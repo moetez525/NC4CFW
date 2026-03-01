@@ -668,6 +668,87 @@
             margin: 0 auto 60px;
         }
 
+        /* Rules Section Styles */
+        .rules-section {
+            padding: 120px 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .rules-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+            align-items: start; /* prevent other cards stretching when one grows */
+        }
+
+        .rules-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(20, 20, 20, 0.8));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgb(0, 242, 250);
+            border-radius: 24px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .rules-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgb(0, 242, 250), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .rules-card:hover::before {
+            opacity: 1;
+        }
+
+        .rules-card.hover,
+        .rules-card.open {
+            transform: translateY(-10px);
+            border-color: var(--primary-orange);
+            box-shadow: 0 25px 70px rgb(0, 242, 250);
+        }
+
+        .rules-card-title {
+            font-family: 'Changa', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            position: relative;
+            z-index: 2;
+        }
+
+        .rules-list {
+            display: none;
+            margin-top: 20px;
+            color: var(--text-gray);
+            text-align: left;
+            list-style: disc inside;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .rules-card.open .rules-list {
+            display: block;
+        }
+
         .connect-section {
             padding: 120px 60px;
             position: relative;
@@ -1293,6 +1374,7 @@
                 <li><a href="#features"><i class="fas fa-star"></i> المميزات</a></li>
                 <li><a href="#connect"><i class="fas fa-gamepad"></i> الدخول لسيرفر</a></li>
                 <li><a href="#admins"><i class="fas fa-users-cog"></i> الإداريين</a></li>
+                <li><a href="#rules"><i class="fas fa-book"></i> القوانين</a></li>
                 <li><a href="https://trh.thta.shop/products" target="_blank"><i class="fas fa-shopping-cart"></i> المتجر</a></li>
             </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -1427,6 +1509,97 @@
             </div>
         </div>
     </section>
+        <!-- Rules Section -->
+    <section id="rules" class="rules-section fade-in-section">
+        <div class="rules-container">
+            <h2 class="section-title">القوانين</h2>
+            <p class="section-subtitle">انقر على أي بطاقة لعرض مجموعة القواعد المتعلقة بها</p>
+            <div class="rules-grid">
+                <div class="rules-card">
+                    <h3 class="rules-card-title">📋القوانين العامة</h3>
+                    <ul class="rules-list">
+                        <li>" Meta Gaming " يمنع التواصل الغير شرعي مثل: الدسكورد والبرامج المشابه له</li>
+                        <li>" VDM " ممنوع استخدام المركبة كسلاح</li>
+                        <li>" RDM " ممنوع القتل العشوائي</li>
+                        <li>يجب وضع اسم كركتر واقعي وتقمصه بشكل ممتاز بالاقوال والافعال</li>
+                        <li>يمنع اهانة الشخص المسقط بأي حال من الاحوال</li>
+                        <li>يمنع تقليد ملابس الشرطة والاسعاف</li>
+                        <li>يمنع الخروج عن الرول بلاي داخل السيرفر لأي سبب من الاسباب</li>
+                        <li>يستخدم للمشاكل الخارجه عن الاربي /ooc امر</li>
+                        <li>في حال اسقطت يحق لك التحدث عن الالم فقط، ويمنع التحدث طبيعي</li>
+                        <li>يمنع التحدث بالسياسه والاعراض والدين وايضا المضايقات (باند نهائي)</li>
+                        <li>يمنع تقليد الكركترات والاسماء الموجوده بالسيرفر بأي طريقة كانت</li>
+                        <li>في حال حضرت سيناريو باحدى كركتراتك يمنع حضور كركتر اخر لك بالسيناريو نفسه</li>
+                        <li>يمنع دخول البيت او الشقه اثناء السيناريو</li>
+                        <li>يمنع التدخل في سيناريو قائم</li>
+                        <li>يمنع ارتداء او استعمال اي خوذة اثناء مشاركتك في اي اطلاق ناري</li>
+                        <li>يمنع على إي لاعب حرق او تفجير جثة ونقلها، ويمنع إهانة اي لاعب بعد قتله</li>
+                        <li>ممنوع الكلام المشفر بجميع انواعه</li>
+                    </ul>
+                </div>
+                <div class="rules-card">
+                    <h3 class="rules-card-title">🛡️المناطق الآمنة </h3>
+                    <ul class="rules-list">
+                        <li>مراكز الشرطة</li>
+                        <li>المستشفيات</li>
+                        <li>الشقق العامة</li>
+                        <li>المطاعم و الكافيهات</li>
+                        <li>ورشات تصليح المركبات</li>
+                        <li>مركز الوظائف</li>
+                        <li>العقار</li>
+                        <li>السجن</li>
+                        <li>المحكمة</li>
+                        <li>حجز المركبات</li>
+                        <li>معارض السيارات</li>
+                        <li>تأجير السيارات </li>
+                        <li>كازينو</li>
+                        <li>ايكيا</li>
+                        <li>مصنع الدجاج</li>
+                    </ul>
+                </div>
+                <div class="rules-card">
+                    <h3 class="rules-card-title">🔪قوانين الإجرام</h3>
+                    <ul class="rules-list">
+                        <li>يمنع خطف الرهينة بالإتفاق لأي سبب كان</li>
+                        <li>يمنع الإعتداء على مفاوض الشرطة</li>
+                        <li>يحق للمجرم طلب واحد فقط على كل رهينة</li>
+                        <li>يمنع التدخل الخارجي وقت التفاوض (يسمح بعد نجاح/فشل التفاوض فقط)</li>
+                        <li>يحق طلب مبلغ 750 أو أقل على كل رهينة</li>
+                        <li>لا يحق لك قتل الرهينة إلا في حال فشل التفاوض فقط</li>
+                        <li>يجب عليك تغطية وجهك أثناء السرقة</li>
+                        <li>لا يسمح بتحريك القتيل من موقع الجريمة الا في حال مساعدته</li>
+                        <li>يمنع اي عمل إجرامي داخل المناطق الأمنة او في حال تفعيل الآولوية</li>
+                        <li>في حال كانت الآولوية فعالة يمنع اي عمل اجرامي ما عدا سرقة سيارة</li>
+                        <li>يمنع خطف مواطن في المناطق العامة او المناطق الآمنة او امام العساكر</li>
+                        <li>يمنع على العساكر التدخل في حرب العصابات بدون وجود فرقة السوات</li>
+                        <li>يمنع سرقة أي موقع بدون رهينة ماعدا البقالة والمنزل</li>
+                        <li>في حال تم إختطافك يجب عليك الخوف على حياتك وتقديرها بالكامل</li>
+                        <li>يمنع التفاخر بالأعمال الإجرامية او توضيحها للمواطنين أو العسكر</li>
+                        <li>يجب بعد الإنتهاء من السرقة أو الجريمة الإبتعاد عن الموقع وعدم البقاء فيه</li>
+                        <li>يمنع الكذب بقول معك رهينة وانت لا تملك</li>
+                        <li>يحق لك المقاومة أو التهديد في حال كان الفرق بينك وبين الذي أمامك واحد</li>
+                        <li>اذا كنت بمطاردة مع مواطن تريد خطفه وهرب الى منطقة آمنة يحق لك إكمال تهديدك وخطفه</li>
+                    </ul>
+                </div>
+                <div class="rules-card">
+                    <h3 class="rules-card-title">🍽️قوانين المطاعم</h3>
+                    <ul class="rules-list">
+                        <li>يجب احترام المطاعم وتقدير الموظفين وعدم الاساءة لهم بكل الطرق</li>
+                        <li>يجب التقيد باسعار الوجبات وعدم الاصرار والمفاوضة وازعاج الموظفين</li>
+                        <li>يمنع استغفال الموظف وتغير الملابس والرجوع للمطعم في خلال مدة قصيرة</li>
+                        <li>يمنع لبس ملابس موظفين المطاعم والتحايل بكونك موظف</li>
+                        <li>يجب الوقوف بشكل منظم لحصولك على الطعام</li>
+                        <li>اسعار الوجبات قابلة للتغير بشكل مستمر ويجب الاطلاع بشكل دوري</li>
+                        <li>البيع فقط داخل المطاعم ولايحق للمواطن طلب وجبات خارج المطعم</li>
+                        <li>يمنع سرقة موظفين المطاعم واخذ وجباتهم</li>
+                        <li>يمنع سرقة موظفين المطاعم واخذ وجباتهم</li>
+                        <li>يمنع سرقة موظفين المطاعم واخذ وجباتهم</li>
+                        <li>يمنع الوقوف بشكل خاطئ في مواقف المطاعم ويجب الالتزام بالمواقف المحدده ويحق للموظف ابلاغ الشرطة وعدم البيع</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Connect Section -->
     <section id="connect" class="connect-section fade-in-section">
@@ -1533,11 +1706,11 @@ function joinDiscord() {
                     <a href="https://discord.com/invite/trh" class="social-link" aria-label="Discord">
                         <i class="fab fa-discord"></i>
                     </a>
-                    <a href="#" class="social-link" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
+                    <a href="https://www.tiktok.com/@truth_cfrp" class="social-link" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
                     </a>
-                    <a href="#" class="social-link" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
+                                        <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
                     </a>
                     <a href="#" class="social-link" aria-label="YouTube">
                         <i class="fab fa-youtube"></i>
@@ -1570,19 +1743,11 @@ function joinDiscord() {
             <div class="footer-section">
                 <h4 class="footer-title">الدعم</h4>
                 <div class="footer-links">
-                    <a href="#" class="footer-link">
-                        <i class="fas fa-angle-left"></i>
-                        مركز المساعدة
-                    </a>
-                    <a href="#" class="footer-link">
-                        <i class="fas fa-angle-left"></i>
-                        الأسئلة الشائعة
-                    </a>
-                    <a href="#" class="footer-link">
+                    <a href="#rules" class="footer-link">
                         <i class="fas fa-angle-left"></i>
                         القوانين
                     </a>
-                    <a href="#" class="footer-link">
+                    <a href="https://discord.com/invite/trh" class="footer-link">
                         <i class="fas fa-angle-left"></i>
                         تواصل معنا
                     </a>
@@ -1592,19 +1757,7 @@ function joinDiscord() {
             <div class="footer-section">
                 <h4 class="footer-title">معلومات</h4>
                 <div class="footer-links">
-                    <a href="#" class="footer-link">
-                        <i class="fas fa-angle-left"></i>
-                        من نحن
-                    </a>
-                    <a href="#" class="footer-link">
-                        <i class="fas fa-angle-left"></i>
-                        سياسة الخصوصية
-                    </a>
-                    <a href="#" class="footer-link">
-                        <i class="fas fa-angle-left"></i>
-                        شروط الاستخدام
-                    </a>
-                    <a href="#" class="footer-link">
+                    <a href="https://trh.thta.shop/products" target="_blank" class="footer-link">
                         <i class="fas fa-angle-left"></i>
                         المتجر
                     </a>
@@ -1772,6 +1925,19 @@ function joinDiscord() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
+            });
+        });
+
+        // Rules Card Toggle
+        const ruleCards = document.querySelectorAll('.rules-card');
+        ruleCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // close others
+                ruleCards.forEach(c => {
+                    if (c !== card) c.classList.remove('open');
+                });
+                // toggle this one
+                card.classList.toggle('open');
             });
         });
 
