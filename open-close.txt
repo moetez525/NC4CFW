@@ -1,0 +1,9 @@
+<div class="transfer-closed-message" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20; min-width: 320px;">
+                            <div class="transfer-icon">
+                                <i class="fas fa-lock" style="font-size: 48px; color: var(--primary-orange);"></i>
+                            </div>
+                            <h3>النقل الإداري مغلق حالياً</h3>
+                            <p>عذراً، باب نقل الإداريين مغلق الآن. يرجى المحاولة لاحقاً.</p>
+                        </div>
+
+style="filter: blur(6px); pointer-events: none; opacity: 0.5; z-index: 5;"

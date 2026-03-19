@@ -42,6 +42,18 @@
             overflow-x: hidden;
             position: relative;
             line-height: 1.6;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        /* allow selection inside form fields */
+        input, textarea {
+            user-select: text;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
         }
         body::before {
             content: '';
@@ -244,11 +256,10 @@
 
         .nav-links a:hover {
             color: var(--white);
-            transform: translateY(-2px);
         }
 
         .nav-links a:hover i {
-            transform: scale(1.2);
+            transform: none;
         }
 
         .nav-links a:hover::after {
@@ -958,6 +969,298 @@
             animation: pulse 2s ease-in-out infinite;
         }
 
+        .apply-admin-container {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--card-bg), var(--dark-bg));
+            margin: 5% auto;
+            padding: 0;
+            border: 1px solid rgba(255, 84, 10, 0.3);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            background: transparent;
+            color: var(--white);
+            padding: 20px 30px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .modal-tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 2px solid rgba(255, 84, 10, 0.3);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .tab-btn:hover {
+            background: var(--medium-gray);
+            border-color: var(--primary-orange);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary-orange), var(--dark-orange));
+            color: var(--white);
+            border-color: var(--primary-orange);
+        }
+
+        .tab-btn i {
+            font-size: 12px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-family: 'Changa', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--black);
+            transform: scale(1.2);
+        }
+
+        .modal-body {
+            padding: 30px;
+            max-height: calc(90vh - 140px);
+            overflow-y: auto;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        #transfer-content {
+            position: relative;
+        }
+
+        .transfer-closed {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .transfer-blur-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            border-radius: 20px;
+        }
+
+        .transfer-closed-message {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 84, 10, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .transfer-closed-message .transfer-icon {
+            font-size: 48px;
+            color: var(--primary-orange);
+            margin-bottom: 20px;
+        }
+
+        .transfer-closed-message h3 {
+            color: var(--white);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: 'Changa', sans-serif;
+        }
+
+        .transfer-closed-message p {
+            color: var(--text-gray);
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .transfer-form {
+        position: relative;
+        filter: none;           /* ✔️ تنحى blur */
+        pointer-events: auto;   /* ✔️ ينجم يكتب */
+        opacity: 1;             /* ✔️ يرجع واضح */
+        }
+
+        /* Success Modal Styles */
+        .success-modal-content {
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .success-content {
+            padding: 40px 30px;
+        }
+
+        .success-icon {
+            font-size: 64px;
+            color: #22c55e;
+            margin-bottom: 20px;
+            animation: successPulse 0.6s ease-out;
+        }
+
+        @keyframes successPulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-content h3 {
+            color: var(--white);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-family: 'Changa', sans-serif;
+        }
+
+        .success-content p {
+            color: var(--text-gray);
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        #successCloseBtn {
+            padding: 12px 30px;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--white);
+            font-size: 16px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(255, 84, 10, 0.3);
+            border-radius: 10px;
+            background: var(--dark-bg);
+            color: var(--white);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(255, 84, 10, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .form-actions .btn {
+            flex: 1;
+            max-width: 150px;
+        }
+
         .store-cta {
             padding: 120px 60px;
             position: relative;
@@ -1354,6 +1657,118 @@
             background: var(--primary-orange);
             color: var(--white);
         }
+            /* Responsive Modal Styles */
+            @media (max-width: 600px) {
+                .modal-content {
+                    width: 95% !important;
+                    max-width: 420px !important;
+                    padding: 18px 8px !important;
+                    border-radius: 16px !important;
+                    right: 0;
+                    left: auto;
+                    position: fixed;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    animation: modalSlideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                @keyframes modalSlideInRight {
+                    from { right: -100%; opacity: 0; }
+                    to { right: 0; opacity: 1; }
+                }
+                .modal-header {
+                    flex-direction: column;
+                    gap: 10px;
+                    padding: 12px 0 !important;
+                }
+                .modal-tabs {
+                    flex-direction: column;
+                    gap: 8px;
+                }
+                .tab-btn {
+                    font-size: 15px !important;
+                    padding: 8px 12px !important;
+                }
+                .modal-body {
+                    padding: 8px 0 !important;
+                }
+                .form-group label {
+                    font-size: 15px !important;
+                }
+                .form-group input,
+                .form-group textarea,
+                .form-group select {
+                    font-size: 13px !important;
+                    padding: 10px 12px !important;
+                }
+                .form-actions {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                .form-actions .btn {
+                    max-width: 100% !important;
+                    font-size: 15px !important;
+                }
+                .success-content {
+                    padding: 24px 8px !important;
+                }
+                .success-content h3 {
+                    font-size: 22px !important;
+                }
+                .success-content p {
+                    font-size: 14px !important;
+                }
+            }
+            /* Responsive Modal Styles */
+            @media (max-width: 600px) {
+                .modal-content {
+                    width: 95% !important;
+                    max-width: 420px !important;
+                    padding: 18px 8px !important;
+                    border-radius: 16px !important;
+                }
+                .modal-header {
+                    flex-direction: column;
+                    gap: 10px;
+                    padding: 12px 0 !important;
+                }
+                .modal-tabs {
+                    flex-direction: column;
+                    gap: 8px;
+                }
+                .tab-btn {
+                    font-size: 15px !important;
+                    padding: 8px 12px !important;
+                }
+                .modal-body {
+                    padding: 8px 0 !important;
+                }
+                .form-group label {
+                    font-size: 15px !important;
+                }
+                .form-group input,
+                .form-group textarea,
+                .form-group select {
+                    font-size: 13px !important;
+                    padding: 10px 12px !important;
+                }
+                .form-actions {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                .form-actions .btn {
+                    max-width: 100% !important;
+                    font-size: 15px !important;
+                }
+                .success-content {
+                    padding: 24px 8px !important;
+                }
+                .success-content h3 {
+                    font-size: 22px !important;
+                }
+                .success-content p {
+                    font-size: 14px !important;
+                }
+            }
     </style>
 </head>
 <body>
@@ -1717,6 +2132,15 @@ function joinDiscord() {
                         <span class="status-indicator"></span>
                         متصل الآن
                     </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="apply-admin-container">
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-user-plus"></i>
+                    التقديم على الادارة
+                </a>
             </div>
         </div>
     </section>
@@ -1731,7 +2155,7 @@ function joinDiscord() {
             <p class="store-description">
                 اكتشف عروضنا الحصرية! احصل على باقات VIP، سيارات فاخرة، وأسلحة قوية من متجرنا الإلكتروني بأسعار تنافسية
             </p>
-            <a href="https://nc4.thta.shop/" target="_blank" class="btn btn-store">
+            <a href="https://nicecity.rmz.gg/" target="_blank" class="btn btn-store">
                 <i class="fas fa-shopping-cart"></i>
                 تصفح المتجر الآن
             </a>
@@ -1803,7 +2227,7 @@ function joinDiscord() {
             <div class="footer-section">
                 <h4 class="footer-title">معلومات</h4>
                 <div class="footer-links">
-                    <a href="https://nc4.thta.shop/" target="_blank" class="footer-link">
+                    <a href="https://nicecity.rmz.gg/" target="_blank" class="footer-link">
                         <i class="fas fa-angle-left"></i>
                         المتجر
                     </a>
@@ -2011,23 +2435,291 @@ function joinDiscord() {
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             updateActiveLink();
-        });
 
-        // Parallax Effect
-        document.addEventListener('mousemove', (e) => {
-            const shapes = document.querySelectorAll('.shape');
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
+            // Modal Functionality
+            const modal = document.getElementById('applicationModal');
+            const successModal = document.getElementById('successModal');
+            const applyBtn = document.querySelector('.apply-admin-container .btn');
+            const closeBtn = document.querySelector('.modal-close');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const successCloseBtn = document.getElementById('successCloseBtn');
+            const applicationForm = document.getElementById('applicationForm');
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
 
-            shapes.forEach((shape, index) => {
-                const speed = (index + 1) * 30;
-                const x = (mouseX - 0.5) * speed;
-                const y = (mouseY - 0.5) * speed;
-                shape.style.transform = `translate(${x}px, ${y}px)`;
+            // Open modal
+            applyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+
+            // Close modal functions
+            function closeModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                applicationForm.reset();
+                // Reset to first tab
+                switchTab('apply');
+            }
+
+            function closeSuccessModal() {
+                successModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                closeModal(); // Also close the application modal
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+            successCloseBtn.addEventListener('click', closeSuccessModal);
+
+            // Close modals when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+                if (e.target === successModal) {
+                    closeSuccessModal();
+                }
+            });
+
+            // Tab switching functionality
+            function switchTab(tabName) {
+                // Remove active class from all tabs and contents
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to selected tab and content
+                document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+                document.getElementById(`${tabName}-content`).classList.add('active');
+            }
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabName = btn.getAttribute('data-tab');
+                    switchTab(tabName);
+                });
+            });
+
+            // Handle form submission
+            applicationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(applicationForm);
+                const data = Object.fromEntries(formData);
+
+                const webhookURL = "https://discord.com/api/webhooks/1484152062588489740/1lal7sNZyZL7l8pN49Qtql0WAO7zLW3pU-q8UtwYlk6xrMVWzN1pmVQSJYcuJoUij4lX";
+
+                fetch(webhookURL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        embeds: [{
+                            title: "📥 تقديم على الإدارة",
+                            color: 16744192,
+                            fields: [
+                                { name: "📧 الإيميل", value: data.email || "غير موجود", inline: false },
+                                { name: "🆔 Discord ID", value: data.discordId || "غير موجود", inline: false },
+                                { name: "👤 اليوزر", value: data.username || "غير موجود", inline: false },
+                                { name: "📛 الاسم", value: data.name || "غير موجود", inline: false },
+                                { name: "🎂 العمر", value: data.age || "غير موجود", inline: false },
+                                { name: "🧠 الخبرات", value: data.experience || "غير موجود" },
+                                { name: "📝 السبب", value: data.reason || "غير موجود" },
+                                { name: "📊 إداري سابق؟", value: data.previousAdmin || "غير موجود" }
+                            ],
+                            footer: {
+                                text: "NICE CITY CFW"
+                            },
+                            timestamp: new Date()
+                        }]
+                    })
+                })
+                .then(() => {
+                    successModal.style.display = 'block';
+                })
+                .catch(() => {
+                    alert("❌ صار خطأ، تأكد من الويبهوك");
+                });
+            });
+            const transferForm = document.getElementById('transferForm');
+            transferForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(transferForm);
+                const data = Object.fromEntries(formData);
+
+                fetch("https://discord.com/api/webhooks/1484161088462393375/hpvWIrgGP531DOdvmN_j3d_ysInj-bQZxdrrTOCB7dlWg-pxfHIviCGqYs2egGZlVCge", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        embeds: [{
+                            title: "📥 طلب نقل إداري جديد",
+                            color: 16744192,
+                            fields: [
+                                { name: "📧 الإيميل", value: data.email || "غير موجود", inline: false },
+                                { name: "🆔 Discord ID", value: data.discordId || "غير موجود", inline: false },
+                                { name: "👤 اليوزر", value: data.username || "غير موجود", inline: false },
+                                { name: "📛 الاسم", value: data.name || "غير موجود", inline: false },
+                                { name: "🎂 العمر", value: data.age || "غير موجود", inline: false },
+                                { name: "🧠 الخبرات", value: data.experience || "غير موجود" },
+                                { name: "📝 سبب الطلب", value: data.reason || "غير موجود", inline: false },
+                                { name: "🏛️ السيرفر السابق", value: data.previousServer || "غير موجود", inline: false },
+                                { name: "👥 عدد أعضاء السيرفر السابق", value: data.previousServerMembers || "غير موجود", inline: false },
+                                { name: "🧠 المسيرة الإدارية", value: data.career || "غير موجود", inline: false },
+                                { name: "📝 لماذا اخترت الانضمام لسيرفرنا؟", value: data.reason || "غير موجود", inline: false }
+                            ],
+                            footer: { text: "NICE CITY CFW - نظام النقل" },
+                            timestamp: new Date()
+                        }]
+                    })
+                })
+                .then(() => {
+                    document.getElementById('successModal').style.display = 'block';
+                    transferForm.reset();
+                })
+                .catch(() => {
+                    alert("❌ حدث خطأ أثناء إرسال الطلب.");
+                });
             });
         });
 
     
     </script>
+
+    <!-- Application Modal -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-tabs">
+                    <button class="tab-btn active" data-tab="apply">
+                        <i class="fas fa-user-plus"></i>
+                        التقديم على الادارة
+                    </button>
+                    <button class="tab-btn" data-tab="transfer">
+                        <i class="fas fa-exchange-alt"></i>
+                        نقل إداري
+                    </button>
+                </div>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content active" id="apply-content">
+                    <form id="applicationForm">
+                        <div class="form-group">
+                            <label for="email">الإيميل</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="discordId">ديسكورد ID</label>
+                            <input type="text" id="discordId" name="discordId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">يوزرك</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">الاسم</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">العمر</label>
+                            <input type="number" id="age" name="age" min="16" max="99" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">الخبرات الإدارية</label>
+                            <textarea id="experience" name="experience" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="reason">سبب التقديم</label>
+                            <textarea id="reason" name="reason" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="previousAdmin">هل كنت إداري في سرفير آخر؟</label>
+                            <select id="previousAdmin" name="previousAdmin" required>
+                                <option value="">اختر...</option>
+                                <option value="yes">نعم</option>
+                                <option value="no">لا</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">إرسال الطلب</button>
+                            <button type="button" class="btn btn-secondary" id="cancelBtn">إلغاء</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="tab-content" id="transfer-content">
+                    <div style="position: relative; min-height: 600px;"> 
+                        <form id="transferForm" class="transfer-form" style="filter: blur(6px); pointer-events: none; opacity: 0.5; z-index: 5;">
+                            <div class="form-group">
+                                <label for="transfer-email">الإيميل</label>
+                                <input type="email" id="transfer-email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transfer-discordId">ديسكورد ID</label>
+                                <input type="text" id="transfer-discordId" name="discordId" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transfer-username">يوزرك</label>
+                                <input type="text" id="transfer-username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transfer-name">الاسم</label>
+                                <input type="text" id="transfer-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transfer-age">العمر</label>
+                                <input type="number" id="transfer-age" name="age" min="16" max="99" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transfer-server">اسم السيرفر السابق</label>
+                                <input type="text" id="transfer-server" name="previousServer" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transfer-members">عدد أعضاء السيرفر السابق</label>
+                                <select id="transfer-members" name="previousServerMembers" required>
+                                    <option value="">اختر...</option>
+                                    <option value=" الأكثر1500"> أكثر من 1500</option>
+                                    <option value="أقل1500">أقل من 1500</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="transfer-career">المسيرة الإدارية</label>
+                                <textarea id="transfer-career" name="career" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="transfer-reason">لماذا اخترت الانضمام لسيرفرنا؟</label>
+                                <textarea id="transfer-reason" name="reason" rows="3" required></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-secondary">إرسال الطلب</button>
+                            </div>
+                        </form>
+                        <div class="transfer-closed-message" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20; min-width: 320px;">
+                            <div class="transfer-icon">
+                                <i class="fas fa-lock" style="font-size: 48px; color: var(--primary-orange);"></i>
+                            </div>
+                            <h3>النقل الإداري مغلق حالياً</h3>
+                            <p>عذراً، باب نقل الإداريين مغلق الآن. يرجى المحاولة لاحقاً.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content success-modal-content">
+            <div class="success-content">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>تم بنجاح!</h3>
+                <p>تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً.</p>
+                <button class="btn btn-primary" id="successCloseBtn">موافق</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
