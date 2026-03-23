@@ -2102,15 +2102,35 @@ function joinDiscord() {
                         متصل الآن
                     </div>
                 </div>
-                <!-- WEB DEVLOPPER -->
                 <div class="admin-card">
                     <div class="admin-image-wrapper">
                         <div class="admin-image-border"></div>
-                        <img src="AA.jpg" alt="Admin" class="admin-image">
+                        <img src="founder.png" alt="Founder" class="admin-image">
                     </div>
                     <span class="admin-rank">
-                        <i class="fas fa-user-shield"></i>
-                        NC | WEB DEVLOPPER
+                        <i class="fas fa-crown"></i>
+                        NC | Founder
+                    </span>
+                    <h3 class="admin-name">NC | Abo meshal</h3>
+                    <div class="admin-status">
+                        <span class="status-indicator"></span>
+                        متصل الآن
+                    </div>
+                </div>
+                <!-- WEB DEVLOPPER -->
+            </div>
+
+            <h3 class="section-title" style="font-size: 42px; margin-top: 50px;">فريق البرمجة</h3>
+            <p class="section-subtitle">تعرف على فريق البرمجة المسؤول عن تطوير السيرفر وتجربة اللعب.</p>
+            <div class="admins-grid">
+                <div class="admin-card">
+                    <div class="admin-image-wrapper">
+                        <div class="admin-image-border"></div>
+                        <img src="AA.jpg" alt="Monster" class="admin-image">
+                    </div>
+                    <span class="admin-rank">
+                        <i class="fas fa-code"></i>
+                        NC | Web Developer
                     </span>
                     <h3 class="admin-name">NC | 𝐦 𝐨 𝐧 𝐬 𝐭 𝐞 𝐫</h3>
                     <div class="admin-status">
@@ -2121,27 +2141,37 @@ function joinDiscord() {
                 <div class="admin-card">
                     <div class="admin-image-wrapper">
                         <div class="admin-image-border"></div>
-                        <img src="image.png" alt="Admin" class="admin-image">
+                        <img src="nacer.png" alt="Monster" class="admin-image">
                     </div>
                     <span class="admin-rank">
-                        <i class="fas fa-user-shield"></i>
-                        NC | Operator
+                        <i class="fas fa-code"></i>
+                        NC | FiveM Developer
                     </span>
-                    <h3 class="admin-name">NC | SAMI</h3>
+                    <h3 class="admin-name">NC | ! Nasser</h3>
+                    <div class="admin-status">
+                        <span class="status-indicator"></span>
+                        متصل الآن
+                    </div>
+                </div>
+                <div class="admin-card">
+                    <div class="admin-image-wrapper">
+                        <div class="admin-image-border"></div>
+                        <img src="drex.gif" alt="Monster" class="admin-image">
+                    </div>
+                    <span class="admin-rank">
+                        <i class="fas fa-code"></i>
+                        NC | FiveM Developer
+                    </span>
+                    <h3 class="admin-name">NC | Drex</h3>
                     <div class="admin-status">
                         <span class="status-indicator"></span>
                         متصل الآن
                     </div>
                 </div>
             </div>
+
             <br>
             <br>
-            <div class="apply-admin-container">
-                <a href="#" class="btn btn-primary">
-                    <i class="fas fa-user-plus"></i>
-                    التقديم على الادارة
-                </a>
-            </div>
         </div>
     </section>
 
@@ -2435,291 +2465,9 @@ function joinDiscord() {
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             updateActiveLink();
-
-            // Modal Functionality
-            const modal = document.getElementById('applicationModal');
-            const successModal = document.getElementById('successModal');
-            const applyBtn = document.querySelector('.apply-admin-container .btn');
-            const closeBtn = document.querySelector('.modal-close');
-            const cancelBtn = document.getElementById('cancelBtn');
-            const successCloseBtn = document.getElementById('successCloseBtn');
-            const applicationForm = document.getElementById('applicationForm');
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            // Open modal
-            applyBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            });
-
-            // Close modal functions
-            function closeModal() {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                applicationForm.reset();
-                // Reset to first tab
-                switchTab('apply');
-            }
-
-            function closeSuccessModal() {
-                successModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                closeModal(); // Also close the application modal
-            }
-
-            closeBtn.addEventListener('click', closeModal);
-            cancelBtn.addEventListener('click', closeModal);
-            successCloseBtn.addEventListener('click', closeSuccessModal);
-
-            // Close modals when clicking outside
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModal();
-                }
-                if (e.target === successModal) {
-                    closeSuccessModal();
-                }
-            });
-
-            // Tab switching functionality
-            function switchTab(tabName) {
-                // Remove active class from all tabs and contents
-                tabBtns.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                // Add active class to selected tab and content
-                document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
-                document.getElementById(`${tabName}-content`).classList.add('active');
-            }
-
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const tabName = btn.getAttribute('data-tab');
-                    switchTab(tabName);
-                });
-            });
-
-            // Handle form submission
-            applicationForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                const formData = new FormData(applicationForm);
-                const data = Object.fromEntries(formData);
-
-                const webhookURL = "https://discord.com/api/webhooks/1484152062588489740/1lal7sNZyZL7l8pN49Qtql0WAO7zLW3pU-q8UtwYlk6xrMVWzN1pmVQSJYcuJoUij4lX";
-
-                fetch(webhookURL, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        embeds: [{
-                            title: "📥 تقديم على الإدارة",
-                            color: 16744192,
-                            fields: [
-                                { name: "📧 الإيميل", value: data.email || "غير موجود", inline: false },
-                                { name: "🆔 Discord ID", value: data.discordId || "غير موجود", inline: false },
-                                { name: "👤 اليوزر", value: data.username || "غير موجود", inline: false },
-                                { name: "📛 الاسم", value: data.name || "غير موجود", inline: false },
-                                { name: "🎂 العمر", value: data.age || "غير موجود", inline: false },
-                                { name: "🧠 الخبرات", value: data.experience || "غير موجود" },
-                                { name: "📝 السبب", value: data.reason || "غير موجود" },
-                                { name: "📊 إداري سابق؟", value: data.previousAdmin || "غير موجود" }
-                            ],
-                            footer: {
-                                text: "NICE CITY CFW"
-                            },
-                            timestamp: new Date()
-                        }]
-                    })
-                })
-                .then(() => {
-                    successModal.style.display = 'block';
-                })
-                .catch(() => {
-                    alert("❌ صار خطأ، تأكد من الويبهوك");
-                });
-            });
-            const transferForm = document.getElementById('transferForm');
-            transferForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const formData = new FormData(transferForm);
-                const data = Object.fromEntries(formData);
-
-                fetch("https://discord.com/api/webhooks/1484161088462393375/hpvWIrgGP531DOdvmN_j3d_ysInj-bQZxdrrTOCB7dlWg-pxfHIviCGqYs2egGZlVCge", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        embeds: [{
-                            title: "📥 طلب نقل إداري جديد",
-                            color: 16744192,
-                            fields: [
-                                { name: "📧 الإيميل", value: data.email || "غير موجود", inline: false },
-                                { name: "🆔 Discord ID", value: data.discordId || "غير موجود", inline: false },
-                                { name: "👤 اليوزر", value: data.username || "غير موجود", inline: false },
-                                { name: "📛 الاسم", value: data.name || "غير موجود", inline: false },
-                                { name: "🎂 العمر", value: data.age || "غير موجود", inline: false },
-                                { name: "🧠 الخبرات", value: data.experience || "غير موجود" },
-                                { name: "📝 سبب الطلب", value: data.reason || "غير موجود", inline: false },
-                                { name: "🏛️ السيرفر السابق", value: data.previousServer || "غير موجود", inline: false },
-                                { name: "👥 عدد أعضاء السيرفر السابق", value: data.previousServerMembers || "غير موجود", inline: false },
-                                { name: "🧠 المسيرة الإدارية", value: data.career || "غير موجود", inline: false },
-                                { name: "📝 لماذا اخترت الانضمام لسيرفرنا؟", value: data.reason || "غير موجود", inline: false }
-                            ],
-                            footer: { text: "NICE CITY CFW - نظام النقل" },
-                            timestamp: new Date()
-                        }]
-                    })
-                })
-                .then(() => {
-                    document.getElementById('successModal').style.display = 'block';
-                    transferForm.reset();
-                })
-                .catch(() => {
-                    alert("❌ حدث خطأ أثناء إرسال الطلب.");
-                });
-            });
         });
 
-    
     </script>
-
-    <!-- Application Modal -->
-    <div id="applicationModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-tabs">
-                    <button class="tab-btn active" data-tab="apply">
-                        <i class="fas fa-user-plus"></i>
-                        التقديم على الادارة
-                    </button>
-                    <button class="tab-btn" data-tab="transfer">
-                        <i class="fas fa-exchange-alt"></i>
-                        نقل إداري
-                    </button>
-                </div>
-                <span class="modal-close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="tab-content active" id="apply-content">
-                    <form id="applicationForm">
-                        <div class="form-group">
-                            <label for="email">الإيميل</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="discordId">ديسكورد ID</label>
-                            <input type="text" id="discordId" name="discordId" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="username">يوزرك</label>
-                            <input type="text" id="username" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="name">الاسم</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="age">العمر</label>
-                            <input type="number" id="age" name="age" min="16" max="99" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="experience">الخبرات الإدارية</label>
-                            <textarea id="experience" name="experience" rows="3" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="reason">سبب التقديم</label>
-                            <textarea id="reason" name="reason" rows="3" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="previousAdmin">هل كنت إداري في سرفير آخر؟</label>
-                            <select id="previousAdmin" name="previousAdmin" required>
-                                <option value="">اختر...</option>
-                                <option value="yes">نعم</option>
-                                <option value="no">لا</option>
-                            </select>
-                        </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">إرسال الطلب</button>
-                            <button type="button" class="btn btn-secondary" id="cancelBtn">إلغاء</button>
-                        </div>
-                    </form>
-                </div>
-                
-                <div class="tab-content" id="transfer-content">
-                    <div style="position: relative; min-height: 600px;"> 
-                        <form id="transferForm" class="transfer-form" style="filter: blur(6px); pointer-events: none; opacity: 0.5; z-index: 5;">
-                            <div class="form-group">
-                                <label for="transfer-email">الإيميل</label>
-                                <input type="email" id="transfer-email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="transfer-discordId">ديسكورد ID</label>
-                                <input type="text" id="transfer-discordId" name="discordId" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="transfer-username">يوزرك</label>
-                                <input type="text" id="transfer-username" name="username" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="transfer-name">الاسم</label>
-                                <input type="text" id="transfer-name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="transfer-age">العمر</label>
-                                <input type="number" id="transfer-age" name="age" min="16" max="99" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="transfer-server">اسم السيرفر السابق</label>
-                                <input type="text" id="transfer-server" name="previousServer" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="transfer-members">عدد أعضاء السيرفر السابق</label>
-                                <select id="transfer-members" name="previousServerMembers" required>
-                                    <option value="">اختر...</option>
-                                    <option value=" الأكثر1500"> أكثر من 1500</option>
-                                    <option value="أقل1500">أقل من 1500</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="transfer-career">المسيرة الإدارية</label>
-                                <textarea id="transfer-career" name="career" rows="3" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="transfer-reason">لماذا اخترت الانضمام لسيرفرنا؟</label>
-                                <textarea id="transfer-reason" name="reason" rows="3" required></textarea>
-                            </div>
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-secondary">إرسال الطلب</button>
-                            </div>
-                        </form>
-                        <div class="transfer-closed-message" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20; min-width: 320px;">
-                            <div class="transfer-icon">
-                                <i class="fas fa-lock" style="font-size: 48px; color: var(--primary-orange);"></i>
-                            </div>
-                            <h3>النقل الإداري مغلق حالياً</h3>
-                            <p>عذراً، باب نقل الإداريين مغلق الآن. يرجى المحاولة لاحقاً.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <!-- Success Modal -->
-    <div id="successModal" class="modal">
-        <div class="modal-content success-modal-content">
-            <div class="success-content">
-                <div class="success-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h3>تم بنجاح!</h3>
-                <p>تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً.</p>
-                <button class="btn btn-primary" id="successCloseBtn">موافق</button>
-            </div>
-        </div>
-    </div>
 
 </body>
 </html>
